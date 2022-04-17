@@ -7,8 +7,12 @@ public class ContactDeleteViaUpdateTests extends TestBase {
 
   @Test
   public void testContactDeleteViaUpdate() {
-    app.getContactHelper().gotoHomePage();
+    app.getNavigationHelper().gotoHomePage();
+    if (! app.getContactHelper().isThereAContact()) {
+      app.getContactHelper().createContact(new ContactData("Ivan", "Ivanov", "Lenina, 20-45", "926-525-25-25", "test@test.ru"));
+    }
     app.getContactHelper().modifyContact();
     app.getContactHelper().deleteUpdateContact();
   }
 }
+
