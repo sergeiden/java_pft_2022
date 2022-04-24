@@ -8,8 +8,26 @@ public class ContactData {
   private final String phone;
   private final String email;
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    ContactData that = (ContactData) o;
+
+    if (lname != null ? !lname.equals(that.lname) : that.lname != null) return false;
+    return name != null ? name.equals(that.name) : that.name == null;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = lname != null ? lname.hashCode() : 0;
+    result = 31 * result + (name != null ? name.hashCode() : 0);
+    return result;
+  }
+
   public ContactData(String name, String lname, String address, String phone, String email) {
-    this.id = 0;
+    this.id = Integer.MAX_VALUE;
     this.name = name;
     this.lname = lname;
     this.address = address;
@@ -63,23 +81,4 @@ public class ContactData {
     this.id = id;
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    ContactData that = (ContactData) o;
-
-    if (id != that.id) return false;
-    if (lname != null ? !lname.equals(that.lname) : that.lname != null) return false;
-    return name != null ? name.equals(that.name) : that.name == null;
-  }
-
-  @Override
-  public int hashCode() {
-    int result = id;
-    result = 31 * result + (lname != null ? lname.hashCode() : 0);
-    result = 31 * result + (name != null ? name.hashCode() : 0);
-    return result;
-  }
 }
