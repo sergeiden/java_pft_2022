@@ -1,57 +1,12 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
-  private int id;
-  private final String lname;
-  private final String name;
-  private final String address;
-  private final String phone;
-  private final String email;
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    ContactData that = (ContactData) o;
-
-    if (lname != null ? !lname.equals(that.lname) : that.lname != null) return false;
-    return name != null ? name.equals(that.name) : that.name == null;
-  }
-
-  @Override
-  public int hashCode() {
-    int result = lname != null ? lname.hashCode() : 0;
-    result = 31 * result + (name != null ? name.hashCode() : 0);
-    return result;
-  }
-
-  public ContactData(String name, String lname, String address, String phone, String email) {
-    this.id = Integer.MAX_VALUE;
-    this.name = name;
-    this.lname = lname;
-    this.address = address;
-    this.phone = phone;
-    this.email = email;
-  }
-
-  public ContactData(int id, String name, String lname, String address, String phone, String email) {
-    this.id = id;
-    this.name = name;
-    this.lname = lname;
-    this.address = address;
-    this.phone = phone;
-    this.email = email;
-  }
-
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "id='" + id + '\'' +
-            ", lname='" + lname + '\'' +
-            ", name='" + name + '\'' +
-            '}';
-  }
+  private int id = Integer.MAX_VALUE;
+  private String lname;
+  private String name;
+  private String address;
+  private String phone;
+  private String email;
 
   public int getId() {
     return id;
@@ -77,8 +32,62 @@ public class ContactData {
     return email;
   }
 
-  public void setId(int id) {
+  public ContactData withId(int id) {
     this.id = id;
+    return this;
   }
 
+  public ContactData withLname(String lname) {
+    this.lname = lname;
+    return this;
+  }
+
+  public ContactData withName(String name) {
+    this.name = name;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public ContactData withPhone(String phone) {
+    this.phone = phone;
+    return this;
+  }
+
+  public ContactData withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id='" + id + '\'' +
+            ", lname='" + lname + '\'' +
+            ", name='" + name + '\'' +
+            '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    ContactData that = (ContactData) o;
+
+    if (id != that.id) return false;
+    if (lname != null ? !lname.equals(that.lname) : that.lname != null) return false;
+    return name != null ? name.equals(that.name) : that.name == null;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = id;
+    result = 31 * result + (lname != null ? lname.hashCode() : 0);
+    result = 31 * result + (name != null ? name.hashCode() : 0);
+    return result;
+  }
 }

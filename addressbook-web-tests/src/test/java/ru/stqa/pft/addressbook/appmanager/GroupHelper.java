@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,12 +33,32 @@ public class GroupHelper extends HelperBase {
     click(By.name("new"));
   }
 
+  public void modify(GroupData group) {
+    selectGroupById(group.getId());
+    initGroupModification();
+    fillGroupForm(group);
+    submitGroupModification();
+    returnToGroupPage();
+  }
+
+  public void modifyGroupFooter(GroupData group) {
+    selectGroupById(group.getId());
+    initGroupModificationFooter();
+    fillGroupForm(group);
+    submitGroupModification();
+    returnToGroupPage();
+  }
+
   public void deleteSelectedGroups() {
     click(By.name("delete"));
   }
 
   public void selectGroup(int index) {
     wd.findElements(By.name("selected[]")).get(index).click();
+  }
+
+  public void selectGroupById(int id) {
+    wd.findElement(By.cssSelector("input[value = '" + id + "']")).click();
   }
 
   public void initGroupModification() {
@@ -60,35 +81,57 @@ public class GroupHelper extends HelperBase {
     click(By.xpath("//div/div[4]/form/input[4]"));
   }
 
-  public void selectSeveralGroups() {
-    click(By.xpath("//div/div[4]/form/span[1]/input"));
-    click(By.xpath("//div/div[4]/form/span[2]/input"));
-  }
-
-  public void createGroup(GroupData group) {
+  public void create(GroupData group) {
     initGroupCreation();
     fillGroupForm(group);
     submitGroupCreation();
     returnToGroupPage();
   }
 
-  public boolean isThereAGroup() {
-    return isElementPresent(By.name("selected[]"));
+  public void createFooter(GroupData group) {
+    initGroupCreationFooter();
+    fillGroupForm(group);
+    submitGroupCreation();
+    returnToGroupPage();
   }
 
-  public int getGroupCount() {
-    return wd.findElements(By.name("selected[]")).size();
+  public void delete(int index) {
+    selectGroup(index);
+    deleteSelectedGroups();
+    returnToGroupPage();
   }
 
-  public List<GroupData> getGroupList() {
+  public void deleteFooter(GroupData group) {
+    selectGroupById(group.getId());
+    deleteSelectedGroupsFooter();
+    returnToGroupPage();
+  }
+
+  public List<GroupData> list() {
     List<GroupData> groups = new ArrayList<>();
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
-    for (WebElement element : elements){
+    for (WebElement element : elements) {
       String name = element.getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      GroupData group = new GroupData(id, name, null, null);
-      groups.add(group);
+      groups.add(new GroupData().withId(id).withName(name));
     }
     return groups;
+  }
+
+  public Groups all() {
+    Groups groups = new Groups();
+    List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+    for (WebElement element : elements) {
+      String name = element.getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      groups.add(new GroupData().withId(id).withName(name));
+    }
+    return groups;
+  }
+
+  public void delete(GroupData group) {
+    selectGroupById(group.getId());
+    deleteSelectedGroups();
+    returnToGroupPage();
   }
 }
