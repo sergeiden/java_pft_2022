@@ -15,7 +15,7 @@ public class ContactHelper extends HelperBase {
     super(wd);
   }
 
-  public int getContactCount() {
+  public int count() {
     return wd.findElements(By.name("selected[]")).size();
   }
 
@@ -63,18 +63,21 @@ public class ContactHelper extends HelperBase {
     modifyContactById(contact.getId());
     fillContactForm(contact);
     updateContact();
+    contactsCache = null;
   }
 
   public void delete(ContactData contact) {
     selectContactById(contact.getId());
     deleteContact();
     acceptAlert();
+    contactsCache = null;
   }
 
   public void deleteAll() {
     selectAllContacts();
     deleteContact();
     acceptAlert();
+    contactsCache = null;
   }
 
   public void updateContact() {
@@ -83,12 +86,14 @@ public class ContactHelper extends HelperBase {
 
   public void deleteUpdateContact() {
     click(By.xpath("//div/div[4]/form[2]/input[2]"));
+    contactsCache = null;
   }
 
   public void create(ContactData contact) {
     gotoContactForm();
     fillContactForm(contact);
     submitContactForm();
+    contactsCache = null;
     returnToContactsPage();
   }
 
@@ -108,16 +113,21 @@ public class ContactHelper extends HelperBase {
     return contacts;
   }
 
+  private Contacts contactsCache = null;
+
   public Contacts all() {
-    Contacts contacts = new Contacts();
+    if (contactsCache != null){
+      return new Contacts(contactsCache);
+    }
+    contactsCache = new Contacts();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
       String lname = element.findElement(By.xpath(".//td[2]")).getText();
       String name = element.findElement(By.xpath(".//td[3]")).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
-      contacts.add(new ContactData().withId(id).withName(name).withLname(lname));
+      contactsCache.add(new ContactData().withId(id).withName(name).withLname(lname));
     }
-    return contacts;
+    return new Contacts(contactsCache);
   }
 }
 
