@@ -1,0 +1,37 @@
+[
+  {
+    "lname": "Ivanov",
+    "name": "Pavel",
+    "address": "Lenina, 20-70",
+    "homePhone": "254-00-00",
+    "email": "test0@test.ru"
+  },
+  {
+    "lname": "Sidorov",
+    "name": "Ivan",
+    "address": "Lenina, 20-71",
+    "homePhone": "254-11-11",
+    "email": "test1@test.ru"
+  },
+  {
+    "lname": "Ivanov",
+    "name": "Ivan",
+    "address": "Lenina, 20-72",
+    "homePhone": "254-22-22",
+    "email": "test2@test.ru"
+  },
+  {
+    "lname": "Fedorov",
+    "name": "Petr",
+    "address": "Lenina, 20-73",
+    "homePhone": "254-33-33",
+    "email": "test3@test.ru"
+  },
+  {
+    "lname": "Sidorov",
+    "name": "Petr",
+    "address": "Lenina, 20-74",
+    "homePhone": "254-44-44",
+    "email": "test4@test.ru"
+  }
+]
