@@ -12,17 +12,17 @@ public class GroupMultipleDeletionTests extends TestBase {
   @BeforeMethod
   public void insurePreconditions() {
     app.goTo().groupPage();
-    while (app.group().list().size() < 2) {
+    while (app.db().groups().size() < 2) {
       app.group().create(new GroupData().withName("Test1"));
     }
   }
 
   @Test
   public void GroupMultipleDeletionTests() {
-    Groups before = app.group().all();
+    Groups before = app.db().groups();
     app.group().selectGroup(before.size() - 1);
     app.group().delete(before.size() - 2);
-    Groups after = app.group().all();
+    Groups after = app.db().groups();
     assertEquals(after.size(), before.size() - 2);
   }
 }
