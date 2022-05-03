@@ -21,6 +21,7 @@ public class ContactlDeleteAllTests extends TestBase {
 
   @Test
   public void testDeleteAllContacts() {
+    app.goTo().homePage();
     app.contact().deleteAll();
     app.goTo().homePage();
     Contacts after = app.db().contacts();

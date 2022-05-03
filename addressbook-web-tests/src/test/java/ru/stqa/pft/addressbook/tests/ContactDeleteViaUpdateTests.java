@@ -23,6 +23,7 @@ public class ContactDeleteViaUpdateTests extends TestBase {
   public void testContactDeleteViaUpdate() {
     Contacts before = app.db().contacts();
     ContactData deletedContact = before.iterator().next();
+    app.goTo().homePage();
     app.contact().modifyContactById(deletedContact.getId());
     app.contact().deleteUpdateContact();
     app.goTo().homePage();

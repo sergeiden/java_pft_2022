@@ -23,6 +23,7 @@ public class ContactModificationTests extends TestBase {
   public void testContactModification() {
     Contacts before = app.db().contacts();
     ContactData modifiedContact = before.iterator().next();
+    app.goTo().homePage();
     ContactData contact = new ContactData().withId(modifiedContact.getId())
             .withName("Ivan").withLname("Petrov").withAddress("Lenina, 20-45").withHomePhone("009").withEmail("newmail@mail.ru");
     app.contact().modify(contact);

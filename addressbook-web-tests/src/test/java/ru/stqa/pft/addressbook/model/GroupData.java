@@ -5,10 +5,9 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @XStreamAlias("group")
 @Entity
@@ -28,7 +27,14 @@ public class GroupData {
   @XStreamOmitField
   @Id
   @Column(name = "group_id")
-  private int id = Integer.MAX_VALUE;
+  private int id;
+
+  @ManyToMany (fetch = FetchType.EAGER, mappedBy = "groups")
+  private Set<ContactData> contacts = new HashSet<ContactData>();
+
+  public Contacts getContacts() {
+    return new Contacts(contacts);
+  }
 
   public String getName() {
     return name;
@@ -67,14 +73,6 @@ public class GroupData {
   }
 
   @Override
-  public String toString() {
-    return "GroupData{" +
-            "id='" + id + '\'' +
-            ", name='" + name + '\'' +
-            '}';
-  }
-
-  @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
@@ -90,5 +88,13 @@ public class GroupData {
     int result = name != null ? name.hashCode() : 0;
     result = 31 * result + id;
     return result;
+  }
+
+  @Override
+  public String toString() {
+    return "GroupData{" +
+            "id='" + id + '\'' +
+            ", name='" + name + '\'' +
+            '}';
   }
 }
