@@ -19,8 +19,12 @@ public class ApplicationManager {
 
   private String browser;
   private RegistrationHelper registrationHelper;
+  private PwdChangeHelper navigationHelper;
+
   private FtpHelper ftp;
   private MailHelper mailHelper;
+  private DbHelper dbHelper;
+
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -29,9 +33,10 @@ public class ApplicationManager {
 
   public void init() throws IOException {
     String target = properties.getProperty("target", "local");
-
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+    dbHelper = new DbHelper();
   }
+
 
   public void stop() {
     if (wd != null) {
@@ -61,6 +66,13 @@ public class ApplicationManager {
     return registrationHelper;
   }
 
+  public PwdChangeHelper pwdchange() {
+    if (navigationHelper == null) {
+      navigationHelper = new PwdChangeHelper(this);
+    }
+    return navigationHelper;
+  }
+
   public WebDriver getDriver() {
     if (wd == null) {
       if (browser.equals(BrowserType.FIREFOX)) {
@@ -80,5 +92,9 @@ public class ApplicationManager {
       mailHelper = new MailHelper(this);
     }
     return mailHelper;
+  }
+
+  public DbHelper db(){
+    return dbHelper;
   }
 }
