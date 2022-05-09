@@ -16,7 +16,7 @@ public class SoapTests extends TestBase {
 
   @BeforeMethod
   public void insurePreconditions() throws RemoteException, ServiceException, MalformedURLException {
-    skipIfNotFixed(0000003);
+    skipIfNotFixed(Integer.parseInt(app.getProperty("issueId")));
   }
 
   @Test
