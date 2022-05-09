@@ -16,7 +16,7 @@ public class PwdChangeHelper extends HelperBase {
   }
 
   public void initPasswordReset(String username) {
-    wd.get("http://localhost/mantisbt-2.25.3/manage_user_page.php");
+    wd.get(app.getProperty("web.baseUrl") + "manage_user_page.php");
     click(By.linkText(username));
     click(By.cssSelector("input[value='Reset Password']"));
   }
