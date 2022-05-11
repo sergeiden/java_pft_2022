@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ru.stqa.pft.addressbook.tests.ContactDeleteViaUpdateTests" tests="1" skipped="0" failures="1" errors="0" timestamp="2022-05-11T17:42:22" hostname="DESKTOP-VG0NKB0" time="0.57">
+<testsuite name="ru.stqa.pft.addressbook.tests.ContactModificationTests" tests="1" skipped="0" failures="1" errors="0" timestamp="2022-05-11T17:42:23" hostname="DESKTOP-VG0NKB0" time="0.518">
   <properties/>
-  <testcase name="testContactDeleteViaUpdate" classname="ru.stqa.pft.addressbook.tests.ContactDeleteViaUpdateTests" time="0.57">
+  <testcase name="testContactModification" classname="ru.stqa.pft.addressbook.tests.ContactModificationTests" time="0.518">
     <failure message="org.openqa.selenium.NoSuchElementException: Unable to locate element: //a[@href='edit.php?id=180']&#10;For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html&#10;Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'&#10;System info: host: 'DESKTOP-VG0NKB0', ip: '192.168.0.26', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_202'&#10;Driver info: org.openqa.selenium.firefox.FirefoxDriver&#10;Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 100.0, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20220428192727, moz:geckodriverVersion: 0.31.0, moz:headless: false, moz:processID: 3052, moz:profile: C:\Users\Sergei\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}&#10;Session ID: 8189edf9-8d8e-40ed-8c86-7634e6a40a8a&#10;*** Element info: {Using=xpath, value=//a[@href='edit.php?id=180']}" type="org.openqa.selenium.NoSuchElementException">org.openqa.selenium.NoSuchElementException: Unable to locate element: //a[@href='edit.php?id=180']
 For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
 Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
@@ -25,7 +25,8 @@ Session ID: 8189edf9-8d8e-40ed-8c86-7634e6a40a8a
 	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
 	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:314)
 	at ru.stqa.pft.addressbook.appmanager.ContactHelper.modifyContactById(ContactHelper.java:77)
-	at ru.stqa.pft.addressbook.tests.ContactDeleteViaUpdateTests.testContactDeleteViaUpdate(ContactDeleteViaUpdateTests.java:27)
+	at ru.stqa.pft.addressbook.appmanager.ContactHelper.modify(ContactHelper.java:81)
+	at ru.stqa.pft.addressbook.tests.ContactModificationTests.testContactModification(ContactModificationTests.java:29)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
