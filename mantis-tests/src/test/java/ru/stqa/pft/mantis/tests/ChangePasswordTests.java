@@ -26,7 +26,8 @@ public class ChangePasswordTests extends TestBase {
     UserData modifiedUser = app.db().users().iterator().next();
     String newpwd = "newpassword";
     String email = modifiedUser.getEmail();
-    app.pwdchange().login("administrator", "root");
+    app.pwdchange().login(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"));
+    System.out.println(app.getProperty("web.adminLogin"));
     app.pwdchange().initPasswordReset(modifiedUser.getName());
     List<MailMessage> mailMessages = app.mail().waitForMail(1, 50000);
     String confirmationLink = findConfirmationLink(mailMessages, email);
