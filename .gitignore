@@ -1,5 +1,5 @@
 .gradle
-build/
+build/tmp/
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -14,3 +14,7 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 .idea/workspace.xml
 *.log
+*.class
+*_tmp
+*.bin
+*.css
